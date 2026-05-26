@@ -26,7 +26,7 @@ function Sidebar(): React.ReactElement {
 
   <li className="nav-item">
     <NavLink
-      to="/articles"
+      to="/artikel"
       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
     >
       <span className="nav-icon">📋</span>
@@ -36,7 +36,7 @@ function Sidebar(): React.ReactElement {
 
   <li className="nav-item">
     <NavLink
-      to="/warnings"
+      to="/warnungen"
       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
     >
       <span className="nav-icon">⚠️</span>
@@ -46,7 +46,7 @@ function Sidebar(): React.ReactElement {
 
   <li className="nav-item">
     <NavLink
-      to="/settings"
+      to="/einstellungen"
       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
     >
       <span className="nav-icon">⚙️</span>

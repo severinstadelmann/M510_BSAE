@@ -1,11 +1,10 @@
 import React from 'react'
-// TODO: Import der Artikeldaten einkommentieren, sobald die Tabelle implementiert wird
- import { articles } from '../data/mockData'
 
-// Artikelseite - zeigt alle Artikel in einer Tabelle an
+import { articles } from '../data/mockData'
+
 function Articles(): React.ReactElement {
   return (
-<div>
+    <div>
       <h1 className="page-title">Artikel</h1>
       <p className="page-subtitle">Alle Lagerartikel im Überblick</p>
 
