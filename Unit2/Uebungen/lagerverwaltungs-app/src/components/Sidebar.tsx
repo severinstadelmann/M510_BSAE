@@ -12,18 +12,48 @@ function Sidebar(): React.ReactElement {
       </div>
 
       <nav>
-        <ul className="nav-menu">
-          <li className="nav-item">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
-            >
-              <span className="nav-icon">🏠</span>
-              Dashboard
-            </NavLink>
-          </li>
-        </ul>
+<ul className="nav-menu">
+  <li className="nav-item">
+    <NavLink
+      to="/"
+      end
+      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+    >
+      <span className="nav-icon">🏠</span>
+      Dashboard
+    </NavLink>
+  </li>
+
+  <li className="nav-item">
+    <NavLink
+      to="/articles"
+      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+    >
+      <span className="nav-icon">📋</span>
+      Artikel
+    </NavLink>
+  </li>
+
+  <li className="nav-item">
+    <NavLink
+      to="/warnings"
+      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+    >
+      <span className="nav-icon">⚠️</span>
+      Warnungen
+    </NavLink>
+  </li>
+
+  <li className="nav-item">
+    <NavLink
+      to="/settings"
+      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+    >
+      <span className="nav-icon">⚙️</span>
+      Einstellungen
+    </NavLink>
+  </li>
+</ul>
       </nav>
     </aside>
   )
