@@ -1,60 +1,34 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
-import Dashboard from './pages/Dashboard.tsx'
-import Courses from './pages/Courses.tsx'
-import Participants from './pages/Participants.tsx'
-import './App.css'
+// src/App.tsx
 
-function App(): React.ReactElement {
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import Courses from './pages/Courses'
+import Participants from './pages/Participants'
+
+function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Sidebar />
+    <BrowserRouter>
+      <div className="app-layout">
+
+        {/* Sidebar Navigation */}
+        <nav className="sidebar">
+          <h2>📚 KursApp</h2>
+          <NavLink to="/"            end>Dashboard</NavLink>
+          <NavLink to="/courses"         >Kurse</NavLink>
+          <NavLink to="/participants"    >Teilnehmende</NavLink>
+        </nav>
+
+        {/* Seiteninhalt */}
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/participants" element={<Participants />} />
+            <Route path="/"             element={<Dashboard />}    />
+            <Route path="/courses"      element={<Courses />}      />
+            <Route path="/participants" element={<Participants />}  />
           </Routes>
         </main>
-      </div>
-    </Router>
-  )
-}
 
-function Sidebar(): React.ReactElement {
-  return (
-    <aside className="sidebar">
-      <div className="sidebar-title">📚 Kursverwaltung</div>
-      <nav>
-        <ul className="nav-menu">
-          <li className="nav-item">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Dashboard
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink 
-              to="/courses" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Kurse
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink 
-              to="/participants" 
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-            >
-              Teilnehmende
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+      </div>
+    </BrowserRouter>
   )
 }
 

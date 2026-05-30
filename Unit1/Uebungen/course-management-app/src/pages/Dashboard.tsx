@@ -1,57 +1,52 @@
-import React from 'react'
+// src/pages/Dashboard.tsx
+
 import { coursesData, participantsData } from '../data/mockData'
 
-function Dashboard(): React.ReactElement {
-  // Berechne Statistiken
-  const totalCourses = coursesData.length
-  const activeCourses = coursesData.filter(c => c.status === 'active').length
-  const totalParticipants = participantsData.length
+function Dashboard() {
+  const activeCourses = coursesData.filter(c => c.status === 'active')
 
   return (
     <div>
-      <h1 className="page-title">Dashboard</h1>
-      
-      <div className="dashboard-stats">
-        <div className="stat-box">
-          <div className="stat-number">{totalCourses}</div>
-          <div className="stat-label">Gesamtkurse</div>
+      <h1>Dashboard</h1>
+
+      {/* Statistik-Karten */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="number">{coursesData.length}</div>
+          <div className="label">Kurse total</div>
         </div>
-        <div className="stat-box">
-          <div className="stat-number">{activeCourses}</div>
-          <div className="stat-label">Aktive Kurse</div>
+        <div className="stat-card">
+          <div className="number">{activeCourses.length}</div>
+          <div className="label">Aktive Kurse</div>
         </div>
-        <div className="stat-box">
-          <div className="stat-number">{totalParticipants}</div>
-          <div className="stat-label">Teilnehmende</div>
+        <div className="stat-card">
+          <div className="number">{participantsData.length}</div>
+          <div className="label">Teilnehmende</div>
         </div>
       </div>
 
-      <h2 style={{ marginTop: '40px', marginBottom: '20px', color: '#2c3e50', fontSize: '20px' }}>
-        Aktuelle Kurse
-      </h2>
-      
-      <div className="cards-container">
-        {coursesData
-          .filter(course => course.status === 'active')
-          .map(course => (
-            <div key={course.id} className="card">
-              <div className="card-title">{course.title}</div>
-              <div className="card-content">
-                <p><strong>Datum:</strong> {new Date(course.date).toLocaleDateString('de-DE')}</p>
-                <p>{course.description}</p>
-                <div className="badge badge-active">Aktiv</div>
-              </div>
-            </div>
-          ))}
+      {/* Aktive Kurse */}
+      <div className="card">
+        <h2>Aktive Kurse</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Datum</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activeCourses.map(course => (
+              <tr key={course.id}>
+                <td>{course.title}</td>
+                <td>{course.date}</td>
+                <td><span className="badge active">Aktiv</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-
-      <h2 style={{ marginTop: '40px', marginBottom: '20px', color: '#2c3e50', fontSize: '20px' }}>
-        Übersicht
-      </h2>
-      <p style={{ color: '#666', lineHeight: '1.8' }}>
-        Diese Dashboard-Seite zeigt eine Übersicht der Kursverwaltungs-App. 
-        Sie können die verfügbaren Navigationspunkte nutzen, um zu den Kursen oder Teilnehmenden zu navigieren.
-      </p>
     </div>
   )
 }
