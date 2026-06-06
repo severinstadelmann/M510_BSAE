@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { mockUsers } from '../data/users';
+import AppHeader from '../components/AppHeader';
+import AppFooter from '../components/AppFooter';
+import PrimaryButton from '../components/PrimaryButton';
 
 export default function LoginPage() {
   const [selectedUserId, setSelectedUserId] = useState('');
@@ -19,20 +22,7 @@ export default function LoginPage() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
-      {/* ── Header (Login) ─────────────────────────────────────────────────── */}
-      <div
-        style={{
-          backgroundColor: '#1565c0',
-          color: 'white',
-          padding: '24px 32px',
-          textAlign: 'center',
-        }}
-      >
-        <h1 style={{ margin: 0, fontSize: '28px', fontWeight: 700 }}>Support Portal</h1>
-        <p style={{ margin: '4px 0 0', fontSize: '14px', opacity: 0.8 }}>
-          Internes Ticketsystem
-        </p>
-      </div>
+      <AppHeader title="Support Portal" />
 
       {/* ── Content ────────────────────────────────────────────────────────── */}
       <div
@@ -77,38 +67,18 @@ export default function LoginPage() {
             ))}
           </select>
 
-          <button
-            onClick={handleLogin}
-            disabled={!selectedUserId}
-            style={{
-              width: '100%',
-              padding: '12px',
-              backgroundColor: selectedUserId ? '#1565c0' : '#cccccc',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontSize: '16px',
-              cursor: selectedUserId ? 'pointer' : 'not-allowed',
-              fontWeight: 600,
-            }}
-          >
-            Einloggen
-          </button>
+          <div style={{ width: '100%' }}>
+            <PrimaryButton
+              label="Einloggen"
+              onClick={handleLogin}
+              disabled={!selectedUserId}
+              fullWidth
+            />
+          </div>
         </div>
       </div>
 
-      {/* ── Footer (Login) ─────────────────────────────────────────────────── */}
-      <div
-        style={{
-          backgroundColor: '#222222',
-          color: '#aaaaaa',
-          padding: '16px 32px',
-          textAlign: 'center',
-          fontSize: '12px',
-        }}
-      >
-        &copy; 2024 Support Portal – Internes System
-      </div>
+      <AppFooter />
     </div>
   );
 }
