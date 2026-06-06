@@ -1,11 +1,16 @@
 import React from 'react'
-import { articles } from '../data/mockData'
+import { articles } from '../data/mockData.ts'
 
 // Dashboard – Übersichtsseite mit wichtigen Kennzahlen
+// Lösung: Kennzahlen werden dynamisch aus den Beispieldaten berechnet
 function Dashboard(): React.ReactElement {
-  // Kennzahlen aus den Beispieldaten berechnen
+  // Gesamtanzahl aller Artikel
   const totalArticles = articles.length
+
+  // Kritische Artikel: Bestand <= Mindestbestand
   const criticalArticles = articles.filter(a => a.stock <= a.minStock).length
+
+  // Anzahl eindeutiger Kategorien via Set
   const categories = new Set(articles.map(a => a.category)).size
 
   return (

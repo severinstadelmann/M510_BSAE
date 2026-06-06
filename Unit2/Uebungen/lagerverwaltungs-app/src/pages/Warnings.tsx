@@ -1,7 +1,8 @@
 import React from 'react'
-import { articles } from '../data/mockData'
+import { articles } from '../data/mockData.ts'
 
 // Warnungsseite – zeigt nur Artikel, bei denen der Bestand den Mindestbestand unterschreitet
+// Lösung: articles wird mit .filter() auf kritische Bestände reduziert
 function Warnings(): React.ReactElement {
   // Nur Artikel mit Bestand <= Mindestbestand anzeigen
   const criticalArticles = articles.filter(a => a.stock <= a.minStock)
@@ -13,6 +14,7 @@ function Warnings(): React.ReactElement {
         Artikel, bei denen der Bestand den Mindestbestand erreicht oder unterschritten hat
       </p>
 
+      {/* Wenn keine kritischen Artikel vorhanden: Erfolgsmeldung anzeigen */}
       {criticalArticles.length === 0 ? (
         <div className="info-box info-box--success">
           ✅ Alle Artikel sind ausreichend bevorratet.
@@ -45,6 +47,7 @@ function Warnings(): React.ReactElement {
                     <td className="text-mono">{article.location}</td>
                     <td className="text-danger">{article.stock}</td>
                     <td>{article.minStock}</td>
+                    {/* Differenz: negativer Wert zeigt an, um wie viel der Bestand zu tief ist */}
                     <td className="text-danger">
                       {article.stock - article.minStock}
                     </td>
